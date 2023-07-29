@@ -1,0 +1,1 @@
+<img src="{{ asset('logo/Re_M_Logo.png') }}" width= "100px">

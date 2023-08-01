@@ -32,6 +32,6 @@ class DeckController extends Controller
     
     public function search()
     {
-        return view('deck.search')    
+        return view('deck.search');
     }
 }

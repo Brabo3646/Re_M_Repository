@@ -41,4 +41,10 @@ class User extends Authenticatable
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
+    
+    public function decks()
+    {
+    //対象のユーザーがどのデッキを所有しているかを示す
+    return $this->belongsToMany(Deck::class);
+    }
 }

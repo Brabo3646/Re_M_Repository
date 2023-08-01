@@ -9,7 +9,6 @@ class UserController extends Controller
 {
     public function home(Request $request, User $user)
     {
-        return view('home.index')
-        ->with(['user' => $user]);
+        return view('home.index');
     }
 }

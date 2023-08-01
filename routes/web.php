@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\UserController;
+use App\Http\Controllers\DeckController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -16,7 +17,15 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/',[UserController::class, 'home'])
+    ->middleware(['auth', 'verified'])
     ->name('user.home');
+Route::get('/deck/newdeck',[DeckController::class, 'newdeck'])
+    ->middleware(['auth', 'verified'])
+    ->name('deck.newdeck');
+Route::post('/deck/create',[DeckController::class, 'create'])
+    ->name('deck.create');
+Route::get('/deck/search',[DeckController::class, 'search'])
+    ->name('deck.search');
 Route::get('/dashboard', function () {
     return view('dashboard');
 })->middleware(['auth', 'verified'])->name('dashboard');

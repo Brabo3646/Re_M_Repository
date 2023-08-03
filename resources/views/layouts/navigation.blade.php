@@ -1,12 +1,12 @@
-<nav x-data="{ open: false }" class="bg-white border-b border-grey-100">
+<nav x-data="{ open: true }" class="bg-blue-500 border-b border-blue-500">
     <!-- Primary Navigation Menu -->
-    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <div class="bg-blue-500 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div class="flex justify-between h-16">
             <div class="flex">
                 <!-- Logo -->
                 <div class="shrink-0 flex items-center">
-                    <a href="{{ route('user.home') }}">
-                        <x-application-logo class="block h-9 w-auto fill-current text-gray-800" />
+                    <a href="{{ route('dashboard') }}">
+                        <x-application-logo class="block h-5 w-auto fill-current text-gray-800" />
                     </a>
                 </div>
 
@@ -15,6 +15,13 @@
                     <x-nav-link :href="route('user.home')" :active="request()->routeIs('user.home')">
                         {{ __('Home') }}
                     </x-nav-link>
+                    <x-nav-link :href="route('deck.newdeck')" :active="request()->routeIs('deck.newdeck')">
+                        {{ __('新しいデッキ') }}
+                    </x-nav-link>
+                    <x-nav-link :href="route('deck.search')" :active="request()->routeIs('deck.search')">
+                        {{ __('デッキ一覧') }}
+                    </x-nav-link>
+                    
                 </div>
             </div>
 

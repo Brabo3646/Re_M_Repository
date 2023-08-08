@@ -2,6 +2,9 @@
     <x-slot name="title">
         Re_M New Deck
     </x-slot>
+    <x-slot name="stylesheet">
+        style.css
+    </x-slot>
     <x-slot name="header">
         Re_M 新しいデッキを作る
     </x-slot>

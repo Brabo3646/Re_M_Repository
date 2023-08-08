@@ -3,11 +3,8 @@
         Re_M New Deck
     </x-slot>
     <x-slot name="header">
-        Re_M New Deck
+        Re_M 新しいデッキを作る
     </x-slot>
-    <h2>
-        新しいデッキを作る
-    </h2>
     <form method = "POST" action="{{ route('deck.create')}}">
         @csrf
         <div class = "mx-auto">

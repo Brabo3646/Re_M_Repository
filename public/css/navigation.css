@@ -1,0 +1,45 @@
+body {
+  font-family: "Helvetica Neue",
+    Arial,
+    "Hiragino Kaku Gothic ProN",
+    "Hiragino Sans",
+    Meiryo,
+    sans-serif;
+}
+a:visited{
+    color:blue;
+}
+.nav{
+    background: #145AC3;
+    padding:0;
+}
+.nav-top{
+    display:flex;   
+    justify-content:space-between;
+    align-items: center;
+}
+.nameplate{
+    background:#FFDBC9;
+    height:48px;
+    width:400px;
+    text-align:center;
+    font-size:32px;
+}
+.logo{
+    width:64px;
+    height:64px;
+}
+#logout-btn{
+    width:160px;
+    height:32px;
+    font-size: 24px;
+}
+.link{
+    width: auto;
+    font-size: 32px;
+}
+.link-btn{
+    width:160px;
+    height:48px;
+    cursor: pointer;
+}

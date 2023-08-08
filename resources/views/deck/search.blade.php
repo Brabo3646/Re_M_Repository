@@ -1,9 +1,9 @@
 <x-app-layout>
-    <x-slot name="stylesheet">
-        "style.css"
-    </x-slot>
     <x-slot name="title">
         Re_M デッキ一覧
+    </x-slot>
+    <x-slot name="stylesheet">
+        style.css
     </x-slot>
     <x-slot name="header">
         Re_M デッキ一覧

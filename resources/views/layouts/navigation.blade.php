@@ -1,6 +1,7 @@
-<nav x-data="{ open: true }" class="bg-blue-500 border-b border-blue-500">
+<link rel="stylesheet" href="{{ asset(css/navigation.css) }}">
+<nav x-data="{ open: false }" class="bg-blue-500 border-b border-blue-500">
     <!-- Primary Navigation Menu -->
-    <div class="bg-blue-500 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div class="flex justify-between h-16">
             <div class="flex">
                 <!-- Logo -->
@@ -21,7 +22,6 @@
                     <x-nav-link :href="route('deck.search')" :active="request()->routeIs('deck.search')">
                         {{ __('デッキ一覧') }}
                     </x-nav-link>
-                    
                 </div>
             </div>
 

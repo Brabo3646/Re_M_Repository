@@ -16,8 +16,7 @@ class Deck extends Model
     ];
     public function users()
     {
-    //対象のデッキを誰が所有しているかを示す
-    return $this->belongsToMany(User::class);
+        return $this->belongsToMany(User::class);
     }
     public function getByLimit(int $limit_count = 10)
     {

@@ -30,8 +30,16 @@ class DeckController extends Controller
         return view('home.index');
     }
     
-    public function search()
+    public function search(Deck $deck)
     {
-        return view('deck.search')    
+        $decks = Deck::latest()->get();
+            //データを'created_atのDESCで並び替えたものを$decksに配列として代入する
+        return view('deck.search')
+            ->with(["decks" => $decks]);
+    }
+    public function check(Deck $deck)
+    {
+        return view('deck.check')
+            ->with (["decks" => $decks]);
     }
 }

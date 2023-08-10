@@ -24,15 +24,13 @@ class DeckRequest extends FormRequest
     public function rules()
     {
         return [
-            'name' => 'required',
-            'quiztype' => 'required',
+            'deck_name' => 'required',
         ];
     }
     public function messages()
     {
         return [
-            'name.required' => 'デッキの名前は必須です。',
-            'quiztype.required' => 'クイズのタイプを選んでください。',
+            'deck_name.required' => 'デッキの名前は必須です。',
         ];
     }
 }

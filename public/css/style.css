@@ -11,3 +11,7 @@ body {
     border: 1px solid #000;
     background-color: #cdefff;
 }
+.deck_table_description{
+  background: lime;
+  width: 300px;
+}

@@ -29,7 +29,7 @@
             <a href="{{ route('deck.newdeck')}}">
                 <button class="link-btn">新しいデッキ</button>
             </a>
-            <a href="{{ route('deck.search')}}">
+            <a href="{{ route('deck.list')}}">
                 <button class="link-btn">デッキ一覧</button>
             </a>
         </div>

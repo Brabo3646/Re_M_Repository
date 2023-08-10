@@ -9,9 +9,8 @@ class Deck extends Model
 {
     use HasFactory;
     protected $fillable = [
-        'quiztype',
         'creater_id',
-        'name',
+        'deck_name',
         'description',
     ];
     public function users()

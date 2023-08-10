@@ -44,7 +44,6 @@ class User extends Authenticatable
     
     public function decks()
     {
-    //対象のユーザーがどのデッキを所有しているかを示す
     return $this->belongsToMany(Deck::class);
     }
 }

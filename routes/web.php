@@ -19,17 +19,25 @@ use Illuminate\Support\Facades\Route;
 Route::get('/',[UserController::class, 'home'])
     ->middleware(['auth', 'verified'])
     ->name('user.home');
+    
 Route::get('/deck/newdeck',[DeckController::class, 'newdeck'])
     ->middleware(['auth', 'verified'])
     ->name('deck.newdeck');
+    
 Route::post('/deck/create',[DeckController::class, 'create'])
+    ->middleware(['auth', 'verified'])
     ->name('deck.create');
-Route::get('/deck/search',[DeckController::class, 'search'])
+Route::get('/deck/list',[DeckController::class, 'list'])
+    ->middleware(['auth', 'verified'])
+    ->name('deck.list');
+Route::post('/deck/search',[DeckController::class, 'search'])
+    ->middleware(['auth', 'verified'])
     ->name('deck.search');
+Route::get('/deck/check',[DeckController::class, 'check'])
+    ->name('deck.check');
 Route::get('/dashboard', function () {
     return view('dashboard');
 })->middleware(['auth', 'verified'])->name('dashboard');
-
 Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');

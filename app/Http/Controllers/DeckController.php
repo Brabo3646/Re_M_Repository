@@ -19,19 +19,36 @@ class DeckController extends Controller
     public function create(DeckRequest $request)
     {
         $deck = new Deck();
-        $deck->name = $request->name;
-        $deck->creator_id = Auth::id();
+        $deck->deck_name = $request->deck_name;
         $deck->description = $request->description;
-        $deck->quiztype = $request->quiztype;
+        $deck->creator_id = Auth::id();
         $deck->save();
         
         $deck->users()->attach(Auth::id());
+            // これにより、作成したデッキを作成者が所有
         
         return view('home.index');
     }
     
-    public function search()
+    public function list()
     {
-        return view('deck.search');
+        $decks = Auth::user()->decks;
+        if(!empty(request('search'))) {
+            //ログインユーザーに紐づいたデッキのIDを配列として一旦保存する
+            $deck_id = array();
+            foreach($decks as $deck){
+                array_push($deck_id, $deck->id);
+            }
+            $search = request('search');
+            //まず、デッキをログインしたユーザーのIDと合致するかで絞り込み、その後検索ワードで絞り込む
+            $decks = Deck::whereIn('id', $deck_id)->where('deck_name', 'LIKE', '%'.$search.'%')->get();
+        }
+            return view('deck.list')
+                ->with(["decks" => $decks]);
+    }
+    function check(Deck $deck)
+    {
+        return view('deck.check')
+            ->with (["decks" => $decks]);
     }
 }

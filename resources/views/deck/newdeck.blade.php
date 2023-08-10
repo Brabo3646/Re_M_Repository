@@ -10,12 +10,12 @@
     </x-slot>
     <form method = "POST" action="{{ route('deck.create')}}">
         @csrf
-        <div class = "mx-auto">
+        <div>
             <label>
                 デッキの名前
-                <input type = "text" name = "name" value = "{{ old('name') }}">
+                <input type = "text" name = "deck_name" value = "{{ old('deck_name') }}">
             </label>
-            @error('name')
+            @error('deck_name')
                 <div class="error">{{ $message }}</div>
             @enderror
         </div>
@@ -24,23 +24,9 @@
                 デッキの説明
                 <textarea name = "description">{{ old('description') }}</textarea>
             </label>
-            <!--今のところ説明におけるエラーは想定していない-->
-            <!--@error('description')-->
-            <!--    <div class="error">{{ $message }}</div>-->
-            <!--@enderror-->
-        </div>
-        <div class = "form-group">
-            <label>
-                <fieldset>
-                    <legend>クイズのタイプ</legend>
-                    <label><input type="radio" name="quiztype" value = 1>○×クイズ</label>
-                    <label><input type="radio" name="quiztype" value = 2>４択クイズ</label>
-                    <label><input type="radio" name="quiztype" value = 3>一問一答</label>
-                </fieldset>
-            </label>
         </div>
         <div class = "form-button">
-            <button>作成</button>
+            <input type="submit" value="作成">
         </div>
     </form>
 </x-app-layout>

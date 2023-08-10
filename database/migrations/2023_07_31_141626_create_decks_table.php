@@ -15,14 +15,14 @@ return new class extends Migration
     {
         Schema::create('decks', function (Blueprint $table) {
             $table->id();
-            $table->string('name');
+            $table->string('deck_name');
             //デッキの名前
             $table->foreignId('creator_id')->constrained('users');
             //作成したユーザーのid
             $table->text('description')->nullable();
             //デッキについての説明
-            $table->tinyInteger('quiztype');
-            //クイズのタイプ
+            // $table->tinyInteger('quiztype');
+            //クイズのタイプ(時間の関係上、割愛)
             //1で○×クイズ、2で４択クイズ、3で一問一答の予定
             $table->timestamps();
         });

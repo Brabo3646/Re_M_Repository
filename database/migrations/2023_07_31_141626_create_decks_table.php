@@ -20,10 +20,11 @@ return new class extends Migration
             $table->foreignId('creator_id')->constrained('users');
             //作成したユーザーのid
             $table->text('description')->nullable();
-            //デッキについての説明
-            // $table->tinyInteger('quiztype');
-            //クイズのタイプ(時間の関係上、割愛)
-            //1で○×クイズ、2で４択クイズ、3で一問一答の予定
+            //デッキの説明
+            $table->unsignedSmallInteger('question_count')->default(0);
+            //入っている問題の数
+            $table->unsignedSmallInteger('new_question_number')->default(1);
+            //次に作られるクイズのID（問題が入るたびに１増える）
             $table->timestamps();
         });
     }

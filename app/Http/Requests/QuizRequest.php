@@ -5,7 +5,7 @@ namespace App\Http\Requests;
 // use Illuminate\Foundation\Http\FormRequest;
 use App\Http\Requests\ApiRequest;
 
-class DeckRequest extends ApiRequest
+class QuizRequest extends ApiRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -22,16 +22,19 @@ class DeckRequest extends ApiRequest
      *
      * @return array<string, mixed>
      */
-    public function rules()
+    public function rules():
     {
         return [
-            // 'deck_name' => 'required',
+            'question' => 'required',
+            'answer' => 'required',
         ];
     }
+    
     public function messages()
     {
         return [
-            // 'deck_name.required' => 'デッキの名前は必須です。',
+            'question.required' => '問題が記入されていません。',
+            'answer.required' => '解答が記入されていません。'
         ];
     }
 }

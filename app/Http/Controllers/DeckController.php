@@ -26,8 +26,7 @@ class DeckController extends Controller
         
         $deck->users()->attach(Auth::id());
             // これにより、作成したデッキを作成者が所有
-        
-        return view('home.index');
+        return redirect()->route('deck.list');
     }
     
     public function list()

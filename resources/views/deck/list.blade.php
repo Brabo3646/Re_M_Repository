@@ -19,11 +19,13 @@
             <th class="deck_table">名前</th>
             <th>説明</th>
             <th>更新日時</th>
+            <th>クイズ数</th>
+            <th>新規クイズを追加</th>
         </tr>
             @forelse($decks as $deck)
                 <tr>
                     <th class="deck_table_name">
-                        <a href= "{{ route('deck.check', $deck->id)}}">
+                        <a href= "{{ route('deck.check',$deck)}}">
                         {{ $deck->deck_name }}
                         </a>
                     </th>
@@ -33,6 +35,15 @@
                     <th class="deck_table_updated_at">
                         {{ $deck->updated_at }}
                     </th>
+                    <th class="deck_table_question_count">
+                        {{ $deck->question_count }}
+                    </th>
+                    <th class="deck_table_newquiz">
+                        <form method = "POST" action = "{{ route('quiz.newquiz',$deck->id) }}">
+                            @csrf
+                             <button class="create-button">追加</button>
+                        </form>
+                    </th>   
                 </tr>
             </tr>
             @empty

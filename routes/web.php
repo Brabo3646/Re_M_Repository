@@ -33,6 +33,9 @@ Route::post('/deck/search',[DeckController::class, 'search'])
 Route::get('/deck/{id}/check',[DeckController::class, 'check'])
     ->middleware(['auth', 'verified'])
     ->name('deck.check');
+Route::delete('/deck/{id}/destory', [DeckController::class, 'destory'])
+    ->middleware(['auth', 'verified'])
+    ->name('deck.destroy');
     
 //QuizController
 Route::post('/quiz/{id}/newquiz',[QuizController::class, 'newquiz'])
@@ -41,9 +44,15 @@ Route::post('/quiz/{id}/newquiz',[QuizController::class, 'newquiz'])
 Route::post('/quiz/create',[QuizController::class, 'create'])
     ->middleware(['auth', 'verified'])
     ->name('quiz.create');
-Route::get('/quiz/{id}/update',[QuizController::class, 'update'])
+Route::post('/quiz/{id}/edit',[QuizController::class, 'edit'])
+    ->middleware(['auth', 'verified'])
+    ->name('quiz.edit');
+Route::patch('/quiz/{id}/update',[QuizController::class, 'update'])
     ->middleware(['auth', 'verified'])
     ->name('quiz.update');
+Route::delete('/quiz/{id}/destory', [QuizController::class, 'destory'])
+    ->middleware(['auth', 'verified'])
+    ->name('quiz.destroy');
     
 //UserController
 Route::get('/',[UserController::class, 'home'])

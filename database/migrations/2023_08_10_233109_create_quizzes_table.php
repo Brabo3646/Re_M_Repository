@@ -15,7 +15,7 @@ return new class extends Migration
     {
         Schema::create('quizzes', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('deck_id')->constrained('decks');
+            $table->foreignId('deck_id')->constrained('decks')->onDelete('cascade');
             //紐づくデッキのID（多対一の関係）
             $table->unsignedSmallInteger('question_number');
             //所属するデッキ内でのID（基本的に作られた順）

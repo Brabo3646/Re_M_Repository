@@ -16,8 +16,8 @@ return new class extends Migration
         Schema::create('deck_user', function (Blueprint $table) {
             //ユーザーがどのデッキを「所有」しているかを示す中間テーブル
             //(誰が作成したかは問わない)
-            $table->foreignId('deck_id')->constrained('decks');
-            $table->foreignId('user_id')->constrained('users');
+            $table->foreignId('deck_id')->constrained('decks')->onDelete('cascade');
+            $table->foreignId('user_id')->constrained('users')->onDelete('cascade');
             $table->primary(['deck_id', 'user_id']);
         });
     }

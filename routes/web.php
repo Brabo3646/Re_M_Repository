@@ -30,7 +30,8 @@ Route::get('/deck/list',[DeckController::class, 'list'])
 Route::post('/deck/search',[DeckController::class, 'search'])
     ->middleware(['auth', 'verified'])
     ->name('deck.search');
-Route::get('/deck/check',[DeckController::class, 'check'])
+Route::get('/deck/{id}/check',[DeckController::class, 'check'])
+    ->middleware(['auth', 'verified'])
     ->name('deck.check');
     
 //QuizController
@@ -40,6 +41,9 @@ Route::post('/quiz/{id}/newquiz',[QuizController::class, 'newquiz'])
 Route::post('/quiz/create',[QuizController::class, 'create'])
     ->middleware(['auth', 'verified'])
     ->name('quiz.create');
+Route::get('/quiz/{id}/update',[QuizController::class, 'update'])
+    ->middleware(['auth', 'verified'])
+    ->name('quiz.update');
     
 //UserController
 Route::get('/',[UserController::class, 'home'])

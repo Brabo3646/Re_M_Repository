@@ -4,8 +4,9 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
-use App\Models\User;
 use App\Models\Deck;
+use App\Models\Quiz;
+use App\Models\User;
 use App\Http\Requests\DeckRequest;
 
 
@@ -45,9 +46,15 @@ class DeckController extends Controller
             return view('deck.list')
                 ->with(["decks" => $decks]);
     }
-    function check(Deck $deck)
-    {
+    function check($id)
+    {    
+        $query = Quiz::where('deck_id', '=', $id);
+        if(!empty(request('search'))) {
+            $search = request('search');
+            $query = $query->where('question', 'LIKE', '%'.$search.'%');
+        }
+        $quizzes = $query->get();
         return view('deck.check')
-            ->with (["decks" => $decks]);
+            ->with (["quizzes" => $quizzes, "id" => $id]);
     }
 }

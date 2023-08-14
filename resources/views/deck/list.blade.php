@@ -16,7 +16,7 @@
         </form>
         <table border="1">
         <tr>
-            <th class="deck_table">名前</th>
+            <th>名前</th>
             <th>説明</th>
             <th>更新日時</th>
             <th>クイズ数</th>
@@ -25,7 +25,7 @@
             @forelse($decks as $deck)
                 <tr>
                     <th class="deck_table_name">
-                        <a href= "{{ route('deck.check',$deck)}}">
+                        <a href= "{{ route('deck.check',$deck->id) }}">
                         {{ $deck->deck_name }}
                         </a>
                     </th>

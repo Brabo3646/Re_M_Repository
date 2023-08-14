@@ -36,4 +36,10 @@ class QuizController extends Controller
         return view('quiz.newquiz')
             ->with (['deck' => $deck]);
     }
+    public function update($id)
+    {   
+        $quiz = Quiz::find($id);
+        return view('quiz.update')
+            ->with(['quiz' => $quiz]);
+    }
 }

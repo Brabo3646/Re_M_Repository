@@ -19,7 +19,9 @@
             <th>番号</th>
             <th>問い</th>
             <th>解答</th>
+            <th>更新日時</th>
             <th>修正する</th>
+            <th>削除する</th>
             <th>最後に正解/誤答した日時</th>
             <th>正解回数</th>
             <th>誤答回数</th>
@@ -37,9 +39,19 @@
                         {{ $quiz->answer }}
                     </th>
                     <th>
-                        <form method = "POST" action = "{{ route('quiz.update', $quiz->id) }}">
+                        {{ $quiz->updated_at }}
+                    </th>
+                    <th>
+                        <form method = "POST" action = "{{ route('quiz.edit', $quiz->id) }}">
                             @csrf
                              <button class="create-button">修正</button>
+                        </form>
+                    </th>
+                    <th>
+                        <form method = "POST" action = "{{ route('quiz.destroy', $quiz->id) }}">
+                            @method("DELETE")
+                            @csrf
+                            <button class="delete-button">削除</button>
                         </form>
                     </th>
                         @if ($quiz->latest_correct > $quiz->latest_error)

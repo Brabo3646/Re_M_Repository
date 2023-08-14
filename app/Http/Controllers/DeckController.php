@@ -57,4 +57,11 @@ class DeckController extends Controller
         return view('deck.check')
             ->with (["quizzes" => $quizzes, "id" => $id]);
     }
+    function destory($id)
+    {
+        $deck = Deck::find($id);
+        $deck->delete();
+        
+        return redirect()->route('deck.list');
+    }
 }

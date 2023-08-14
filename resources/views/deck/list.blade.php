@@ -21,6 +21,7 @@
             <th>更新日時</th>
             <th>クイズ数</th>
             <th>新規クイズを追加</th>
+            <th>デッキを消去</th>
         </tr>
             @forelse($decks as $deck)
                 <tr>
@@ -42,6 +43,13 @@
                         <form method = "POST" action = "{{ route('quiz.newquiz',$deck->id) }}">
                             @csrf
                              <button class="create-button">追加</button>
+                        </form>
+                    </th>
+                    <th class="deck_table_delete">
+                        <form method = "POST" action = "{{ route('deck.destroy', $deck->id) }}">
+                            @method("DELETE")
+                            @csrf
+                            <button class="delete-button">削除</button>
                         </form>
                     </th>   
                 </tr>

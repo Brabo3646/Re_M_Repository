@@ -28,18 +28,35 @@ class QuizController extends Controller
         $deck = Deck::find(request('deck_id'));
         $deck->question_count = $deck->question_count + 1;
         $deck->new_question_number = $deck->new_question_number + 1;
-        // $deck->deck_name = $deck->deck_name;
-        // $deck->description = $deck->description;
-        // $deck->creator_id = $deck->creator_id;
         $deck->save();
         
         return view('quiz.newquiz')
             ->with (['deck' => $deck]);
     }
-    public function update($id)
+    public function edit($id)
     {   
         $quiz = Quiz::find($id);
-        return view('quiz.update')
+        return view('quiz.edit')
             ->with(['quiz' => $quiz]);
+    }
+    public function update($id)
+    {
+        $quiz = Quiz::find($id);
+        $quiz->question = request('question');
+        $quiz->answer = request('answer');
+        $quiz->save();
+        print_r($quiz);
+        $id = $quiz->deck_id;
+        return redirect()->route('deck.check', $id);
+    }
+    public function destory($id)
+    {
+        $quiz = Quiz::find($id);
+        $deck_id = $quiz->deck_id;
+        $quiz->delete();
+        $deck = Deck::find($deck_id);
+        $deck->question_count = $deck->question_count - 1;
+        $deck->save();
+        return redirect()->route('deck.check' , $deck_id);
     }
 }

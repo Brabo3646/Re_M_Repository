@@ -29,6 +29,15 @@ a:visited{
     width:64px;
     height:64px;
 }
+#menu{
+    display: none;
+}
+#close{
+    display: none;
+}
+#smartphone-logout-btn{
+    display: none;
+}
 #logout-btn{
     width:160px;
     height:32px;
@@ -42,4 +51,61 @@ a:visited{
     width:160px;
     height:48px;
     cursor: pointer;
+}
+
+/*以下はスマートフォン*/
+
+@media (max-width: 600px){
+    #logout{
+        display: none;
+    }
+    .nameplate{
+        display: none;
+    }
+    .logo{
+        display: block;
+        margin-left: auto;
+        margin-right: auto;
+    }
+    .linkspace{
+        position: fixed;
+        top: 0;
+        bottom: 0;
+        right: 0;
+        left: 0;
+        background: rgba(255, 255, 255, 0.8);
+        text-align: center;
+        padding: 64px;
+        opacity: 0;
+        pointer-events: none;
+        transition: opacity .6s;
+    }
+    .linkspace.show{
+        opacity: 1;
+        pointer-events: auto;
+    }
+    .link-btn{
+        font-size: 32px;
+        width:300px;
+        height:96px;
+        display: block;
+    }
+    #smartphone-logout-btn{
+    display: block;
+    }
+    #menu{
+        width:64px;
+        height:64px;
+        display: block;
+        cursor: pointer;
+    }
+    #close{
+        position: fixed;
+        top: 8px;
+        right: 8px;
+        width:64px;
+        height:64px;
+        display: block;
+        cursor: pointer;
+    }
 }

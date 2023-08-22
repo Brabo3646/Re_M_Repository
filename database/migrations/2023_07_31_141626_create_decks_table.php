@@ -23,8 +23,6 @@ return new class extends Migration
             //デッキの説明
             $table->unsignedSmallInteger('question_count')->default(0);
             //入っている問題の数
-            $table->unsignedSmallInteger('new_question_number')->default(1);
-            //次に作られるクイズのID（問題が入るたびに１増える）
             $table->timestamps();
         });
     }

@@ -24,33 +24,39 @@ Route::get('/deck/newdeck',[DeckController::class, 'newdeck'])
 Route::post('/deck/create',[DeckController::class, 'create'])
     ->middleware(['auth', 'verified'])
     ->name('deck.create');
-Route::get('/deck/list',[DeckController::class, 'list'])
+Route::get('/deck/check/list',[DeckController::class, 'check_list'])
     ->middleware(['auth', 'verified'])
-    ->name('deck.list');
+    ->name('deck.check.list');
 Route::post('/deck/search',[DeckController::class, 'search'])
     ->middleware(['auth', 'verified'])
     ->name('deck.search');
-Route::get('/deck/{id}/check',[DeckController::class, 'check'])
+Route::get('/deck/check/{id}',[DeckController::class, 'check'])
     ->middleware(['auth', 'verified'])
     ->name('deck.check');
-Route::delete('/deck/{id}/destory', [DeckController::class, 'destory'])
+Route::delete('/deck/destory/{id}', [DeckController::class, 'destory'])
     ->middleware(['auth', 'verified'])
     ->name('deck.destroy');
+Route::get('/deck/answer/list',[DeckController::class, 'answer_list'])
+    ->middleware(['auth', 'verified'])
+    ->name('deck.answer.list');
+Route::post('/deck/answer/{id}',[DeckController::class, 'answer'])
+    ->middleware(['auth', 'verified'])
+    ->name('deck.answer');
     
 //QuizController
-Route::post('/quiz/{id}/newquiz',[QuizController::class, 'newquiz'])
+Route::post('/quiz/newquiz/{id}',[QuizController::class, 'newquiz'])
     ->middleware(['auth', 'verified'])
     ->name('quiz.newquiz');
 Route::post('/quiz/create',[QuizController::class, 'create'])
     ->middleware(['auth', 'verified'])
     ->name('quiz.create');
-Route::post('/quiz/{id}/edit',[QuizController::class, 'edit'])
+Route::post('/quiz/edit/{id}',[QuizController::class, 'edit'])
     ->middleware(['auth', 'verified'])
     ->name('quiz.edit');
-Route::patch('/quiz/{id}/update',[QuizController::class, 'update'])
+Route::patch('/quiz/update/{id}',[QuizController::class, 'update'])
     ->middleware(['auth', 'verified'])
     ->name('quiz.update');
-Route::delete('/quiz/{id}/destory', [QuizController::class, 'destory'])
+Route::delete('/quiz/destory/{id}', [QuizController::class, 'destory'])
     ->middleware(['auth', 'verified'])
     ->name('quiz.destroy');
     

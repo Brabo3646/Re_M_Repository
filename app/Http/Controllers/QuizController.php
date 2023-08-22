@@ -20,7 +20,7 @@ class QuizController extends Controller
     {
         $quiz = new Quiz();
         $quiz->deck_id = request('deck_id');
-        $quiz->question_number = request('question_number');
+        $quiz->question_number = request('question_count') + 1;
         $quiz->question = request('question');
         $quiz->answer = request('answer');
         $quiz->save();
@@ -51,9 +51,15 @@ class QuizController extends Controller
     }
     public function destory($id)
     {
-        $quiz = Quiz::find($id);
-        $deck_id = $quiz->deck_id;
-        $quiz->delete();
+        $delete_quiz = Quiz::find($id);
+        $deck_id = $delete_quiz->deck_id;
+        $quiz_number = $delete_quiz->question_number;
+        $delete_quiz->delete();
+        $quizzes = Quiz::where('question_number', '>', $quiz_number)->get();
+        foreach($quizzes as $quiz){
+            $quiz->question_number = $quiz->question_number - 1;
+            $quiz->save();
+        }
         $deck = Deck::find($deck_id);
         $deck->question_count = $deck->question_count - 1;
         $deck->save();

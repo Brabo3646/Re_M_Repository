@@ -13,7 +13,7 @@
             <div class="nameplate">
                 ようこそ<a href="{{ route('profile.edit') }}">{{ Auth::user()->name }}</a>さん
             </div>
-            <div>
+            <div id="logout">
                 <form method="POST" action="{{ route('logout') }}">
                     @csrf
                     <x-dropdown-link :href="route('logout')"
@@ -23,9 +23,22 @@
                     </x-dropdown-link>
                 </form>
             </div>
+            <div>
+                <img src="{{ asset('/logo/menu.png') }}" id="menu">
+            </div>
         </div>
         <!--各リンク -->
-        <div class=link-space>
+        <div class=linkspace>
+            <form method="POST" action="{{ route('logout') }}">
+                    @csrf
+                    <x-dropdown-link :href="route('logout')"
+                            onclick="event.preventDefault();
+                                        this.closest('form').submit();">
+                        <button id="smartphone-logout-btn" class="link-btn">ログアウト</button> 
+                    </x-dropdown-link>
+                </form>
+            <img src="{{ asset('/logo/close.png') }}" id="close">
+            
             <a href="{{ route('deck.newdeck')}}">
                 <button class="link-btn">新しいデッキ</button>
             </a>
@@ -38,3 +51,4 @@
         </div>
     </div>
 </nav>
+<script src="{{ asset('js/navigation.js') }}"></script>

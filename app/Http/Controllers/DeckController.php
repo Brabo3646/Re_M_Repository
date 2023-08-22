@@ -27,10 +27,10 @@ class DeckController extends Controller
         
         $deck->users()->attach(Auth::id());
             // これにより、作成したデッキを作成者が所有
-        return redirect()->route('deck.list');
+        return redirect()->route('deck.check.list');
     }
     
-    public function list()
+    public function check_list()
     {
         $decks = Auth::user()->decks;
         if(!empty(request('search'))) {
@@ -43,10 +43,10 @@ class DeckController extends Controller
             //まず、デッキをログインしたユーザーのIDと合致するかで絞り込み、その後検索ワードで絞り込む
             $decks = Deck::whereIn('id', $deck_id)->where('deck_name', 'LIKE', '%'.$search.'%')->get();
         }
-            return view('deck.list')
+            return view('deck.check.check_list')
                 ->with(["decks" => $decks]);
     }
-    function check($id)
+    public function check($id)
     {    
         $query = Quiz::where('deck_id', '=', $id);
         if(!empty(request('search'))) {
@@ -54,14 +54,39 @@ class DeckController extends Controller
             $query = $query->where('question', 'LIKE', '%'.$search.'%');
         }
         $quizzes = $query->get();
-        return view('deck.check')
+        return view('deck.check.check')
             ->with (["quizzes" => $quizzes, "id" => $id]);
     }
-    function destory($id)
+    public function destory($id)
     {
         $deck = Deck::find($id);
         $deck->delete();
         
-        return redirect()->route('deck.list');
+        return redirect()->route('deck.check.list');
+    }
+    
+    public function answer_list()
+    {
+        $decks = Auth::user()->decks;
+        if(!empty(request('search'))) {
+            //ログインユーザーに紐づいたデッキのIDを配列として一旦保存する
+            $deck_id = array();
+            foreach($decks as $deck){
+                array_push($deck_id, $deck->id);
+            }
+            $search = request('search');
+            //まず、デッキをログインしたユーザーのIDと合致するかで絞り込み、その後検索ワードで絞り込む
+            $decks = Deck::whereIn('id', $deck_id)->where('deck_name', 'LIKE', '%'.$search.'%')->get();
+        }
+            return view('deck.answer.answer_list')
+                ->with(["decks" => $decks]);
+    }
+    public function answer($id)
+    {
+        $deck = Deck::find($id);
+        
+        return view('deck.answer.answer')
+            ->with(["deck" => $deck]);
+        
     }
 }

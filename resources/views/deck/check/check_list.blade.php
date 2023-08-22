@@ -9,7 +9,7 @@
         Re_M デッキ一覧
     </x-slot>
     <x-slot name="slot">
-        <form action="{{ route('deck.list') }}" method="GET">
+        <form action="{{ route('deck.check.list') }}" method="GET">
         @csrf
             <input type="text" name="search" value = "{{ old('search') }}" placeholder="検索キーワードを入力">
             <input type="submit" value="検索">
@@ -18,6 +18,7 @@
         <tr>
             <th>名前</th>
             <th>説明</th>
+            <th>このクイズを解く！</th>
             <th>更新日時</th>
             <th>クイズ数</th>
             <th>新規クイズを追加</th>
@@ -32,6 +33,12 @@
                     </th>
                     <th class="deck_table_description">
                         {{ $deck->description }}
+                    </th>
+                    <th class="deck_table_answer">
+                        <form method = "POST" action = "{{ route('deck.answer',$deck->id) }}">
+                            @csrf
+                             <button class="create-button">追加</button>
+                        </form>
                     </th>
                     <th class="deck_table_updated_at">
                         {{ $deck->updated_at }}

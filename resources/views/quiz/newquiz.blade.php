@@ -11,7 +11,7 @@
     <form method = "POST" action="{{ route('quiz.create') }}">
         @csrf
         <input type = "hidden" name = "deck_id" value = {{$deck->id}}>
-        <input type = "hidden" name = "question_number" value = {{$deck->new_question_number}}>
+        <input type = "hidden" name = "question_count" value = {{$deck->question_count}}>
         <div>
             <label>
                 クイズの問い

@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\AvaterController;
 use App\Http\Controllers\DeckController;
 use App\Http\Controllers\QuizController;
 use App\Http\Controllers\UserController;
@@ -16,6 +17,23 @@ use Illuminate\Support\Facades\Route;
 | be assigned to the "web" middleware group. Make something great!
 |
 */
+//AvaterController
+Route::get('/deck/share/avater',[AvaterController::class, 'share_avater_exist'])
+    ->middleware(['auth', 'verified'])
+    ->name('share.avater.exist');
+Route::get('/avater/newavater',[AvaterController::class, 'newavater'])
+    ->middleware(['auth', 'verified'])
+    ->name('avater.newavater');
+Route::post('/avater/create',[AvaterController::class, 'create'])
+    ->middleware(['auth', 'verified'])
+    ->name('avater.create');
+Route::get('/crew/add',[AvaterController::class, 'crew_add'])
+    ->middleware(['auth', 'verified'])
+    ->name('crew.add');
+Route::post('/crew/register',[AvaterController::class, 'crew_register'])
+    ->middleware(['auth', 'verified'])
+    ->name('crew.register');
+    
 
 //DeckController
 Route::get('/deck/newdeck',[DeckController::class, 'newdeck'])
@@ -24,7 +42,7 @@ Route::get('/deck/newdeck',[DeckController::class, 'newdeck'])
 Route::post('/deck/create',[DeckController::class, 'create'])
     ->middleware(['auth', 'verified'])
     ->name('deck.create');
-Route::get('/deck/check/list',[DeckController::class, 'check_list'])
+Route::get('/deck/browse/list',[DeckController::class, 'check_list'])
     ->middleware(['auth', 'verified'])
     ->name('deck.check.list');
 Route::post('/deck/search',[DeckController::class, 'search'])
@@ -42,6 +60,22 @@ Route::get('/deck/answer/list',[DeckController::class, 'answer_list'])
 Route::post('/deck/answer/{id}',[DeckController::class, 'answer'])
     ->middleware(['auth', 'verified'])
     ->name('deck.answer');
+Route::get('/deck/share/list',[DeckController::class, 'share_list'])
+    ->middleware(['auth', 'verified'])
+    ->name('deck.share.list');
+Route::post('deck/share/confirm',[DeckController::class, 'share_confirm'])
+    ->middleware(['auth', 'verified'])
+    ->name('deck.share.confirm');
+Route::post('/deck/share/{id}',[DeckController::class, 'share'])
+    ->middleware(['auth', 'verified'])
+    ->name('deck.share');
+Route::post('/deck/offer/confirm',[DeckController::class, 'offer_confirm'])
+    ->middleware(['auth', 'verified'])
+    ->name('deck.offer.confirm');
+Route::post('/deck/offer/refuse',[DeckController::class, 'offer_refuse'])
+    ->middleware(['auth', 'verified'])
+    ->name('deck.offer.refuse');
+
     
 //QuizController
 Route::post('/quiz/newquiz/{id}',[QuizController::class, 'newquiz'])

@@ -41,9 +41,22 @@ class User extends Authenticatable
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
-    
+    public function avater()
+    {
+    return $this->hasOne(Avater::class);
+    }
+    public function follow()
+    {
+    return $this->belongsToMany(Avater::class);
+    }
     public function decks()
     {
-    return $this->belongsToMany(Deck::class);
+    return $this->belongsToMany(Deck::class)
+                ->withPivot('crew_offer');
     }
+    // public function offered_decks()
+    // {
+    // return $this->belongsToMany(Deck::class)
+    //             ->withPivot('crew_offer');
+    // }
 }

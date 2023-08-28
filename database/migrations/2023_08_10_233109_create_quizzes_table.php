@@ -23,14 +23,6 @@ return new class extends Migration
             //クイズの問い
             $table->string('answer');
             //クイズの答え
-            $table->dateTime('latest_correct')->nullable();
-            //最後に正解した日時
-            $table->unsignedSmallInteger('correct_count')->default(0);
-            //正解回数
-            $table->dateTime('latest_error')->nullable();
-            //最後に間違えた日時
-            $table->unsignedTinyInteger('error_count')->default(0);
-            //間違い回数            
             $table->boolean('hidden')->default(false);
             //trueになると、問題が登場しなくなる
             $table->timestamps();

@@ -22,10 +22,6 @@
             <th>更新日時</th>
             <th>修正する</th>
             <th>削除する</th>
-            <th>最後に正解/誤答した日時</th>
-            <th>正解回数</th>
-            <th>誤答回数</th>
-            
         </tr>
             @forelse($quizzes as $quiz)
                 <tr>
@@ -54,25 +50,6 @@
                             <button class="delete-button">削除</button>
                         </form>
                     </th>
-                        @if ($quiz->latest_correct > $quiz->latest_error)
-                            <th class = 'correct'>
-                                {{ $quiz->latest_correct }}
-                            </th>
-                        @elseif ($quiz->latest_error > $quiz->latest_correct)
-                            <th class = 'error'>
-                                {{ $quiz->latest_error }}
-                            </th>
-                        @else
-                            <th class = 'unanswered'>
-                                未解答
-                            </th>
-                        @endif
-                    <th>
-                        {{ $quiz->correct_count }}
-                    </th>
-                    <th>
-                        {{ $quiz->error_count }}
-                    </th>  
                 </tr>
             </tr>
             @empty

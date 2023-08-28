@@ -25,13 +25,13 @@ class DeckRequest extends ApiRequest
     public function rules()
     {
         return [
-            // 'deck_name' => 'required',
+            'deck_name' => 'required',
         ];
     }
     public function messages()
     {
         return [
-            // 'deck_name.required' => 'デッキの名前は必須です。',
+            'deck_name.required' => 'デッキの名前は必須です。',
         ];
     }
 }

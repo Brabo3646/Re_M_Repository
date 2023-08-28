@@ -1,37 +1,42 @@
 <x-app-layout>
     <x-slot name="title">
-        Re_M デッキ一覧
+        Re_M デッキ共有
     </x-slot>
     <x-slot name="stylesheet">
         style.css
     </x-slot>
     <x-slot name="header">
-        Re_M デッキ一覧
+        Re_M デッキを共有
     </x-slot>
     <x-slot name="slot">
-        <form action="{{ route('deck.answer.list') }}" method="GET">
+        <form action="{{ route('deck.check.list') }}" method="GET">
         @csrf
             <input type="text" name="search" value = "{{ old('search') }}" placeholder="検索キーワードを入力">
             <input type="submit" value="検索">
         </form>
         <table border="1">
-            <tr>
-                <th>名前</th>
-                <th>説明</th>
-                <th>更新日時</th>
-                <th>クイズ数</th>
-            </tr>
+        <tr>
+            <th>名前</th>
+            <th>説明</th>
+            <th>このクイズを共有する！</th>
+            <th>更新日時</th>
+            <th>クイズ数</th>
+        </tr>
             @forelse($decks as $deck)
                 <tr>
                     <th class="deck_table_name">
-                        <form action="{{ route('deck.answer', $deck->id) }}" method="POST">
-                            @csrf
-                        </form>
+                        <a href= "{{ route('deck.check',$deck->id) }}">
                         {{ $deck->deck_name }}
                         </a>
                     </th>
                     <th class="deck_table_description">
                         {{ $deck->description }}
+                    </th>
+                    <th class="deck_table_answer">
+                        <form method = "POST" action = "{{ route('deck.share',$deck->id) }}">
+                            @csrf
+                             <button class="create-button">共有</button>
+                        </form>
                     </th>
                     <th class="deck_table_updated_at">
                         {{ $deck->updated_at }}

@@ -1,12 +1,12 @@
 <x-app-layout>
     <x-slot name="title">
-        Re_M デッキ一覧
+        Re_M デッキ確認
     </x-slot>
     <x-slot name="stylesheet">
         style.css
     </x-slot>
     <x-slot name="header">
-        Re_M デッキ一覧
+        Re_M デッキ確認
     </x-slot>
     <x-slot name="slot">
         <form action="{{ route('deck.check.list') }}" method="GET">
@@ -18,7 +18,6 @@
         <tr>
             <th>名前</th>
             <th>説明</th>
-            <th>このクイズを解く！</th>
             <th>更新日時</th>
             <th>クイズ数</th>
             <th>新規クイズを追加</th>
@@ -34,12 +33,6 @@
                     <th class="deck_table_description">
                         {{ $deck->description }}
                     </th>
-                    <th class="deck_table_answer">
-                        <form method = "POST" action = "{{ route('deck.answer',$deck->id) }}">
-                            @csrf
-                             <button class="create-button">追加</button>
-                        </form>
-                    </th>
                     <th class="deck_table_updated_at">
                         {{ $deck->updated_at }}
                     </th>
@@ -53,17 +46,18 @@
                         </form>
                     </th>
                     <th class="deck_table_delete">
-                        <form method = "POST" action = "{{ route('deck.destroy', $deck->id) }}">
+                        <form method = "POST" action = "{{ route('deck.destroy', $deck->id) }}" onSubmit="return check()">
                             @method("DELETE")
                             @csrf
                             <button class="delete-button">削除</button>
                         </form>
-                    </th>   
+                    </th>
                 </tr>
             </tr>
             @empty
                 <h2>デッキなし</h2>
             @endforelse
         </table>
+        <script src="{{ asset('js/check_list.js') }}"></script>
     </x-slot>
 </x-app-layout>

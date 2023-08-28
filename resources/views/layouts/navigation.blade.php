@@ -43,11 +43,15 @@
                 <button class="link-btn">新しいデッキ</button>
             </a>
             <a href="{{ route('deck.check.list')}}">
-                <button class="link-btn">デッキ一覧</button>
+                <button class="link-btn">作成デッキ一覧</button>
+            </a>            
+            <a href="{{ route('share.avater.exist')}}">
+                <button class="link-btn">デッキを共有</button>
             </a>
             <a href="{{ route('deck.answer.list')}}">
                 <button class="link-btn">クイズを解く！</button>
             </a>
+
         </div>
     </div>
 </nav>

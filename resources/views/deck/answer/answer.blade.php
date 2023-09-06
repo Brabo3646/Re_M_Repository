@@ -9,20 +9,29 @@
         Re_M クイズを解く！
     </x-slot>
     <x-slot name="slot">
-        <section id="question">
-            <h1>Q.問い</h1>
+        <section class = "front">
+            @foreach($quizzes as $quiz)
+            <h1 class = "question_{{ $loop->iteration }} hidden_question">Q.{{$quiz->question}}</h1>
+            @endforeach
         </section>
         <section id="check-answer">
-            <button>答えを見る</button>
+            <button id='check_answer_button'>答えを見る</button>
         </section>
-        <section id = modal class="hidden">
-            <h2>Q.問い</h2>
-            <h1>A.答え</h1>
-        <div id="CE-button">
-            <button>合ってた！</button>
-            <button>もう一度！</button>
-        </div>
-    </section>
-        <script src='{{ asset("/js/answer.js") }}'></script>
+        <div id = "mask" class = "backHidden"></div>
+        <section id = "modal" class = "backHidden">
+            @foreach($quizzes as $quiz)    
+                <h2 class = "question_{{ $loop->iteration }} hidden_question"> Q.{{$quiz->question}}</h2>
+                <h1 class = "question_{{ $loop->iteration }} hidden_question"> A.{{$quiz->answer}}</h1>
+            <div>
+                <form method="POST" action = "{{ route('quiz.CE')}}">
+                    <input type="hidden" name="quiz_id" value="{{$quiz->id}}">
+                    <input type="hidden" name="user_id" value="{{$user_id}}">
+                    <button class="CE_button question_{{ $loop->iteration }} hidden_question" type="submit" name="CE" value="correct">正解！</button>
+                    <button class="CE_button question_{{ $loop->iteration }} hidden_question" type="submit" name="CE" value="error">不正解</button>
+                </form>
+            </div>
+            @endforeach
+        </section>
+    <script src='{{ asset("/js/answer.js") }}'></script>
     </x-slot>
 </x-app-layout>

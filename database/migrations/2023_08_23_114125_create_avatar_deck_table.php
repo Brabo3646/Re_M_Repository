@@ -13,14 +13,14 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('avater_deck', function (Blueprint $table) {
+        Schema::create('avatar_deck', function (Blueprint $table) {
             //ユーザーがどのデッキをアバターとして共有したかを示す中間テーブル
             
-            $table->unsignedBigInteger('avater_user_id');
-            $table->foreign('avater_user_id')->references('user_id')->on('avaters')->onDelete('cascade');
+            $table->unsignedBigInteger('avatar_user_id');
+            $table->foreign('avatar_user_id')->references('user_id')->on('avatars')->onDelete('cascade');
             $table->unsignedBigInteger('deck_id');
             $table->foreign('deck_id')->references('id')->on('decks')->onDelete('cascade');
-            $table->primary(['avater_user_id','deck_id']);
+            $table->primary(['avatar_user_id','deck_id']);
         });
     }
 
@@ -31,6 +31,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('avater_deck');
+        Schema::dropIfExists('avatar_deck');
     }
 };

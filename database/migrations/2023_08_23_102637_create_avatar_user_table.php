@@ -13,12 +13,12 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('avater_user', function (Blueprint $table) {
+        Schema::create('avatar_user', function (Blueprint $table) {
             //ユーザーがどのユーザーを（アバターモデルとして）フォローしているかを示す中間テーブル
-            $table->unsignedBigInteger('avater_user_id');
-            $table->foreign('avater_user_id')->references('user_id')->on('avaters')->onDelete('cascade');
+            $table->unsignedBigInteger('avatar_user_id');
+            $table->foreign('avatar_user_id')->references('user_id')->on('avatars')->onDelete('cascade');
             $table->foreignId('user_id')->constrained('users')->onDelete('cascade');
-            $table->primary(['avater_user_id', 'user_id']);
+            $table->primary(['avatar_user_id', 'user_id']);
         });
     }
 
@@ -29,6 +29,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('avater_user');
+        Schema::dropIfExists('avatar_user');
     }
 };

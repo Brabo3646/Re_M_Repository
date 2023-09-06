@@ -20,4 +20,12 @@ class Deck extends Model
     {
         return $this->belongsToMany(User::class);  
     }
+    public function groups()
+    {
+        return $this->belongsToMany(Group::class);
+    }
+    public function quizzes()
+    {
+        return $this->hasMany(Quiz::class);
+    }
 }

@@ -9,17 +9,17 @@
         Re_M {{ $deck->deck_name }} の共有相手を選ぶ
     </x-slot>
     <x-slot name="slot">
-        <a href={{route('crew.add')}}><button>クルーを追加する</button></a>
+        <a href={{route('crew.add',"share")}}><button>クルーを追加する</button></a>
         <h1>デッキを共有する相手を選択してください。</h1>
         <ul>
-            @forelse($avaters as $avater)
+            @forelse($avatars as $avatar)
                 
                 <li class="crew_name">
                     <form method = "POST" action="{{ route('deck.share.confirm')}}">
                         @csrf
                         <input type ="hidden" name="deck_id" value ="{{$deck->id}}">
-                        <input type ="hidden" name="user_id" value ="{{$avater->user_id}}">
-                        <input type ="submit" value="{{ $avater->avater_name }}">
+                        <input type ="hidden" name="user_id" value ="{{$avatar->user_id}}">
+                        <input type ="submit" value="{{ $avatar->avatar_name }}">
                     </form>
                 </li>
             @empty

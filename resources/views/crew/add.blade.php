@@ -9,14 +9,18 @@
         Re_M クルーを追加する
     </x-slot>
     <x-slot name="slot">
-        <form action="{{ route('crew.add') }}" method="GET">
+        @if($route = "group")
+        <form action="{{ route('crew.add', "group") }}" method="GET">
+        @else
+        <form action="{{ route('crew.add', "share") }}" method="GET">
+        @endif
         @csrf
-            <input type="text" name="search" value = "{{ old('search') }}" placeholder="追加したいアバターのIDを入力">
+            <input type="text" name="search" value = "{{ old('search') }}" placeholder="追加したいアバターのID">
             <input type="submit" value="検索">
         </form>
-        @if ($avater === null)
+        @if ($avatar === null)
             <p>登録したいアバターのIDを入力してください。</p>
-        @elseif ($avater === 'nohit')
+        @elseif ($avatar === 'nohit')
             <p>該当するアバターは見つかりませんでした。</p>
         @else
             <table border="1">
@@ -26,16 +30,25 @@
                     <th>自己紹介文</th>
                 </tr>
                 <tr>
-                    <th>{{$avater->avater_name}}</th>
-                    <th>{{$avater->avater_ID}}</th>
-                    <th>{{$avater->introduce}}</th>
+                    <th>{{$avatar->avatar_name}}</th>
+                    <th>{{$avatar->avatar_ID}}</th>
+                    <th>{{$avatar->introduce}}</th>
                 </tr>
             </table>
-            <form method = "POST" action="{{ route('crew.register')}}">
-                @csrf
-                <input type="hidden" name="user_id" value= {{$avater->user_id}}>
-                <input type="submit" value="このアバターを登録する">
-            </form>
+            @if ($avatar->user_id === $id)
+            <p>自分自身を登録することはできません。</p>
+            @else
+                @if($route = "group")
+                    <form method = "POST" action="{{ route('crew.register', "group")}}">
+                @else
+                    <form method = "POST" action="{{ route('crew.register', "share")}}">
+                @endif
+                    @csrf
+                    <input type="hidden" name="user_id" value={{$avatar->user_id}}>
+                    <input type="hidden" name="route" value={{$route}}>
+                    <input type="submit" value="このアバターを登録する">
+                </form>
+            @endif
             <!--自分のアバターを検索した場合は、登録ボタンが出てこない-->
         @endif
             

@@ -41,22 +41,28 @@ class User extends Authenticatable
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
-    public function avater()
+    public function avatar()
     {
-    return $this->hasOne(Avater::class);
+    return $this->HasOne(Avatar::class);
     }
     public function follow()
     {
-    return $this->belongsToMany(Avater::class);
+    return $this->belongsToMany(Avatar::class);
     }
     public function decks()
     {
     return $this->belongsToMany(Deck::class)
-                ->withPivot('crew_offer');
+                ->wherePivot('crew_offer',false);
     }
-    // public function offered_decks()
-    // {
-    // return $this->belongsToMany(Deck::class)
-    //             ->withPivot('crew_offer');
-    // }
+    public function offered_decks()
+    {
+    return $this->belongsToMany(Deck::class)
+                ->wherePivot('crew_offer',true);
+    }
+    public function quiz($id)
+    {
+    return $this->belongsToMany(Quiz::class)
+                ->where('id', '=', $id)
+                ->withPivot('correct_count','error_count','latest_correct','latest_error');
+    }
 }

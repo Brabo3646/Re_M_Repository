@@ -13,11 +13,11 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('avaters', function (Blueprint $table) {
+        Schema::create('avatars', function (Blueprint $table) {
             $table->foreignId('user_id')->constrained('users')->onDelete('cascade');
-            $table->string('avater_name');
+            $table->string('avatar_name');
             // ユーザーの公開名
-            $table->string('avater_ID')->unique();
+            $table->string('avatar_ID')->unique();
             // ユーザーが設定できるID（ほかの人から検索するときに利用する）
             $table->string('introduce')->nullable();
             // 自己紹介文
@@ -35,6 +35,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('avater');
+        Schema::dropIfExists('avatar');
     }
 };

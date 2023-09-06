@@ -2,10 +2,9 @@
 
 namespace App\Http\Requests;
 
-// use Illuminate\Foundation\Http\FormRequest;
-use App\Http\Requests\ApiRequest;
+use Illuminate\Foundation\Http\FormRequest;
 
-class DeckRequest extends ApiRequest
+class GroupRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -25,14 +24,17 @@ class DeckRequest extends ApiRequest
     public function rules()
     {
         return [
-            'deck_name' => 'required|max:31',
+            'group_name' =>'required|max:31',
+            'description' => 'max:255',
         ];
     }
+    
     public function messages()
     {
         return [
-            'deck_name.required' => 'デッキの名前は必須です。',
-            'deck_name.max' => 'デッキの名前は最大３１文字までです。',
+            'group_name.required' => 'グループの名前は必須です。',
+            'group_name.max' => 'グループの名前は最大３１文字までです。',
+            'description.required' => '説明文は最大２５５文字までです。',
         ];
     }
 }

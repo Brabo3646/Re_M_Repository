@@ -1,27 +1,27 @@
 <x-app-layout>
     <x-slot name="title">
-        Re_M New Deck
+        Re_M 新しいグループ
     </x-slot>
     <x-slot name="stylesheet">
         style.css
     </x-slot>
     <x-slot name="header">
-        Re_M 新しいデッキを作る
+        Re_M 新しいグループの作成
     </x-slot>
-    <form method = "POST" action="{{ route('deck.create')}}">
+    <form method = "POST" action="{{ route('group.create')}}">
         @csrf
         <div>
             <label>
-                デッキの名前
-                <input type = "text" name = "deck_name" value = "{{ old('deck_name') }}">
+                グループの名前
+                <input type = "text" name = "group_name" value = "{{ old('group_name') }}">
             </label>
-            @error('deck_name')
+            @error('group_name')
                 <div class="error">{{ $message }}</div>
             @enderror
         </div>
         <div class = "form-group">
             <label>
-                デッキの説明
+                グループの説明
                 <textarea name = "description">{{ old('description') }}</textarea>
             </label>
             @error('description')

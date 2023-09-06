@@ -1,0 +1,29 @@
+.backHidden{
+    display: none;
+}
+.hidden_question{
+  display: none;
+}
+.CE_button{
+    width: 150px;
+    height:90px;
+}
+#modal {
+  background: #fff;
+  width: 600px;
+  border-radius: 4px;
+  position: absolute;
+  top: 40px;
+  left: 0;
+  right: 0;
+  margin: 0 auto;
+}
+
+#mask {
+  background: rgba(0, 0, 0, 0.4);
+  position: fixed;
+  top: 0;
+  bottom: 0;
+  right: 0;
+  left: 0;
+}

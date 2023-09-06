@@ -1,6 +1,6 @@
 <x-app-layout>
     <x-slot name="title">
-        Re_M New Avater
+        Re_M New Avatar
     </x-slot>
     <x-slot name="stylesheet">
         style.css
@@ -12,23 +12,23 @@
     <p>
     デッキを共有するためには、オンライン上でのあなたのプロフィールであるアバターの作成が必須です。   
     </p>
-    <form method = "POST" action="{{ route('avater.create')}}">
+    <form method = "POST" action="{{ route('avatar.create',$route)}}">
         @csrf
         <div>
             <label>
                 アバターの名前
-                <input type = "text" name = "avater_name" value = "{{ old('avater_name') }}">
+                <input type = "text" name = "avatar_name" value = "{{ old('avatar_name') }}">
             </label>
-            @error('avater_name')
+            @error('avatar_name')
                 <div class="error">{{ $message }}</div>
             @enderror
         </div>
         <div>
             <label>
                 アバターのID（ほかの人があなたのアバターを検索する際に必要です）
-                <input type = "text" name = "avater_ID" value = "{{ old('avater_ID') }}">
+                <input type = "text" name = "avatar_ID" value = "{{ old('avatar_ID') }}">
             </label>
-            @error('avater_ID')
+            @error('avatar_ID')
                 <div class="error">{{ $message }}</div>
             @enderror
         </div>

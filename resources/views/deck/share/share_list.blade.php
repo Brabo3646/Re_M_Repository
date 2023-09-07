@@ -16,15 +16,15 @@
         </form>
         <table border="1">
         <tr>
-            <th>名前</th>
-            <th>説明</th>
-            <th>このクイズを共有する！</th>
+            <th class="deck_tablehead_name">名前</th>
+            <th class="deck_tablehead_description">説明</th>
+            <th class="deck_tablehead_button">クイズを共有</th>
             <th>更新日時</th>
             <th>クイズ数</th>
         </tr>
             @forelse($decks as $deck)
                 <tr>
-                    <th class="deck_table_name">
+                    <th>
                         <a href= "{{ route('deck.check',$deck->id) }}">
                         {{ $deck->deck_name }}
                         </a>

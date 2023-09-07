@@ -16,12 +16,12 @@
         </form>
         <table border="1">
         <tr>
-            <th>名前</th>
-            <th>説明</th>
-            <th>更新日時</th>
-            <th>クイズ数</th>
-            <th>新規クイズを追加</th>
-            <th>デッキを消去</th>
+            <th class="deck_tablehead_name">名前</th>
+            <th class="deck_tablehead_description">説明</th>
+            <th class="deck_tablehead_update">更新日時</th>
+            <th class="deck_tablehead_number">クイズ数</th>
+            <th class="deck_tablehead_button">クイズを追加</th>
+            <th class="deck_tablehead_button">デッキを消去</th>
         </tr>
             @forelse($decks as $deck)
                 <tr>

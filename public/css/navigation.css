@@ -1,5 +1,7 @@
 body {
-  font-family: "Helvetica Neue",
+    margin: 0;
+    padding: 0;
+    font-family: "Helvetica Neue",
     Arial,
     "Hiragino Kaku Gothic ProN",
     "Hiragino Sans",
@@ -15,8 +17,13 @@ a:visited{
 }
 .nav-top{
     display:flex;   
-    justify-content:space-between;
+    justify-content: space-between;
     align-items: center;
+}
+.linkspace{
+    display: flex;
+    align-items: center;
+    margin: 0 auto;
 }
 .nameplate{
     background:#FFDBC9;
@@ -48,9 +55,13 @@ a:visited{
     font-size: 32px;
 }
 .link-btn{
-    width:160px;
+    width:240px;
     height:48px;
     cursor: pointer;
+    font-size: 16px; 
+}
+#answer-link{
+    width:320px;
 }
 
 /*以下はスマートフォン*/

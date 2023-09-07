@@ -5,6 +5,9 @@
     <x-slot name="stylesheet">
         style.css
     </x-slot>
+    <x-slot name="stylesheet2">
+        form.css
+    </x-slot>
     <x-slot name="header">
         Re_M 新しいデッキを作る
     </x-slot>
@@ -13,7 +16,7 @@
         <div>
             <label>
                 デッキの名前
-                <input type = "text" name = "deck_name" value = "{{ old('deck_name') }}">
+                <input class="c-form-text" type = "text" name = "deck_name" value = "{{ old('deck_name') }}">
             </label>
             @error('deck_name')
                 <div class="error">{{ $message }}</div>
@@ -22,7 +25,7 @@
         <div class = "form-group">
             <label>
                 デッキの説明
-                <textarea name = "description">{{ old('description') }}</textarea>
+                <textarea class="c-form-textarea" name = "description">{{ old('description') }}</textarea>
             </label>
             @error('description')
                 <div class="error">{{ $message }}</div>

@@ -6,7 +6,15 @@ body {
     Meiryo,
     sans-serif;
 }
-
+.deck_tablehead_name{
+  width:160px;
+}
+.deck_tablehead_description{
+  width:480px;
+}
+.deck_tablehead_button{
+  width:96px;
+}
 .deck_table{
     border: 1px solid #000;
     background-color: #cdefff;

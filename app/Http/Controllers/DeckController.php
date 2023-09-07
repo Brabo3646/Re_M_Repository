@@ -51,7 +51,7 @@ class DeckController extends Controller
             $query = $query->where('question', 'LIKE', '%'.$search.'%');
         }
         $quizzes = $query->get();
-        return view('deck.browse.check')
+        return view('deck.check.check')
             ->with (["quizzes" => $quizzes, "id" => $id]);
     }
     public function destory($id)
@@ -84,9 +84,10 @@ class DeckController extends Controller
         $deck = Deck::find($id);
         $quizzes = $deck->quizzes;
         $shuffled_quizzes = $quizzes->shuffle();
+        $quiz_count = count($shuffled_quizzes);
         $user_id = Auth::id();
         return view('deck.answer.answer')
-            ->with(["quizzes" => $shuffled_quizzes, "user_id" => $user_id]);
+            ->with(["quizzes" => $shuffled_quizzes, "quiz_count" => $quiz_count, "user_id" => $user_id]);
         
     }
     public function share_list()
@@ -119,7 +120,7 @@ class DeckController extends Controller
             return redirect()->route('deck.share.list');
         }
         // デッキを所有済み、または共有オファー済みの場合、何もしないでもどる
-        $user()->offered_decks()->attach($deck,["crew_offer" => true]);
+        $user->offered_decks()->attach($deck,["crew_offer" => true]);
         return redirect()->route('user.home');
     }
     public function group_add($id)
@@ -135,7 +136,7 @@ class DeckController extends Controller
         $deck_id = request("deck_id");
         $deck = Deck::find($deck_id);
         $user = User::find(request("user_id"));
-        $user->decks()->updateExistingPivot($deck_id, ['crew_offer' => false]);
+        $user->offered_decks()->updateExistingPivot($deck_id, ['crew_offer' => false]);
         return redirect()->route('user.home');
     }
     public function offer_refuse()

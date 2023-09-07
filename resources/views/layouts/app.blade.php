@@ -6,6 +6,9 @@
         <meta name="csrf-token" content="{{ csrf_token() }}">
         <title>{{ $title }}</title>
         <link rel="stylesheet" href='{{ asset("/css/" . "$stylesheet") }}'>
+        @isset($stylesheet2)
+        <link rel="stylesheet" href='{{ asset("/css/" . "$stylesheet2") }}'>
+        @endisset
         <!--Breezeのスクリプトのみ許可-->
         @vite(['resources/js/app.js'])
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.0/jquery.min.js"></script>

@@ -9,8 +9,10 @@
         Re_M クイズを解く！
     </x-slot>
     <x-slot name="slot">
-        <section class = "front">
+        <p id = "quiz_count" class = hidden>{{ $quiz_count }}</p>
+        <section id = "front">
             @foreach($quizzes as $quiz)
+            <h1 class = "question_{{ $loop->iteration }} hidden_question">{{ $loop->iteration }}/{{ $quiz_count }} 問目</h1>
             <h1 class = "question_{{ $loop->iteration }} hidden_question">Q.{{$quiz->question}}</h1>
             @endforeach
         </section>
@@ -23,11 +25,11 @@
                 <h2 class = "question_{{ $loop->iteration }} hidden_question"> Q.{{$quiz->question}}</h2>
                 <h1 class = "question_{{ $loop->iteration }} hidden_question"> A.{{$quiz->answer}}</h1>
             <div>
-                <form method="POST" action = "{{ route('quiz.CE')}}">
+                <form class="question_{{ $loop->iteration }} hidden_question" method="POST" action = "{{ route('quiz.CE')}}">
                     <input type="hidden" name="quiz_id" value="{{$quiz->id}}">
                     <input type="hidden" name="user_id" value="{{$user_id}}">
-                    <button class="CE_button question_{{ $loop->iteration }} hidden_question" type="submit" name="CE" value="correct">正解！</button>
-                    <button class="CE_button question_{{ $loop->iteration }} hidden_question" type="submit" name="CE" value="error">不正解</button>
+                    <button class="CE_button" type="submit" name="CE" value="correct">正解！</button>
+                    <button class="CE_button" type="submit" name="CE" value="error">不正解</button>
                 </form>
             </div>
             @endforeach

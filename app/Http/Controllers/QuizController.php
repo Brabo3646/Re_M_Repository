@@ -29,7 +29,7 @@ class QuizController extends Controller
         $quiz->save();
         
         $deck = Deck::find(request('deck_id'));
-        $deck->question_count = $deck->question_count + 1;
+        $deck->question_count ++;
         $deck->save();
         
         return view('quiz.newquiz')

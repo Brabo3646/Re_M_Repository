@@ -44,17 +44,16 @@
             </a>
             <a href="{{ route('deck.check.list')}}">
                 <button class="link-btn">作成デッキ一覧</button>
-            </a>            
+            </a>  
+            <a href="{{ route('deck.answer.list')}}">
+                <button class="link-btn" id="answer-link">クイズを解く！</button>
+            </a>          
             <a href="{{ route('share.avatar.exist')}}">
                 <button class="link-btn">デッキを共有</button>
-            </a>
-            <a href="{{ route('deck.answer.list')}}">
-                <button class="link-btn">クイズを解く！</button>
             </a>
             <a href="{{ route('group.avatar.exist')}}">
                 <button class="link-btn">グループ</button>
             </a>
-
         </div>
     </div>
 </nav>

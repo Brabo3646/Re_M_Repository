@@ -10,6 +10,7 @@ use App\Models\User;
 
 class UserController extends Controller
 {
+    // 初期画面
     public function home(Request $request, User $user)
     {
         // $offered_decks = Auth::user()->offered_decks()

@@ -13,11 +13,13 @@ use App\Http\Requests\DeckRequest;
 
 class DeckController extends Controller
 {
+    // 新しいデッキを作成する画面
     public function newdeck()
     {
         return view('deck.newdeck');
     }
     
+    // 新しいデッキを作成
     public function create(DeckRequest $request)
     {
         $deck = new Deck();
@@ -31,6 +33,7 @@ class DeckController extends Controller
         return redirect()->route('deck.check.list');
     }
     
+    // 自身が作成したデッキの一覧画面
     public function check_list()
     {
         $query = Deck::where('creator_id', '=', Auth::user()->id);
@@ -43,6 +46,8 @@ class DeckController extends Controller
             return view('deck.check.check_list')
                 ->with(["decks" => $decks]);
     }
+    
+    // デッキの中身を確認する画面
     public function check($id)
     {    
         $query = Quiz::where('deck_id', '=', $id);
@@ -54,6 +59,8 @@ class DeckController extends Controller
         return view('deck.check.check')
             ->with (["quizzes" => $quizzes, "id" => $id]);
     }
+    
+    // デッキを削除
     public function destory($id)
     {
         $deck = Deck::find($id);
@@ -62,6 +69,7 @@ class DeckController extends Controller
         return redirect()->route('deck.check.list');
     }
     
+    // 回答できるデッキの一覧画面
     public function answer_list()
     {
         $decks = Auth::user()->decks;
@@ -79,6 +87,8 @@ class DeckController extends Controller
             return view('deck.answer.answer_list')
                 ->with(["decks" => $decks]);
     }
+    
+    // 回答する画面
     public function answer($id)
     {
         $deck = Deck::find($id);
@@ -90,6 +100,8 @@ class DeckController extends Controller
             ->with(["quizzes" => $shuffled_quizzes, "quiz_count" => $quiz_count, "user_id" => $user_id]);
         
     }
+    
+    // 共有可能なデッキの一覧画面
     public function share_list()
     {
         $query = Deck::where('creator_id', '=', Auth::user()->id);
@@ -102,6 +114,8 @@ class DeckController extends Controller
             return view('deck.share.share_list')
                 ->with(["decks" => $decks]);
     }
+    
+    // デッキを共有する相手を選ぶ画面
     public function share($id)
     {
         $deck = Deck::find($id);
@@ -109,6 +123,8 @@ class DeckController extends Controller
         return view('deck.share.share')
             ->with(["deck" => $deck, "avatars" => $avatars]);
     }
+    
+    // デッキを共有する処理
     public function share_confirm()
     {   
         $deck_id = request("deck_id");

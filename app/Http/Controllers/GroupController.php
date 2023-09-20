@@ -14,20 +14,26 @@ use Illuminate\Http\Request;
 class GroupController extends Controller
 {
     public function group_list()
+    // 所属するグループの一覧
     {
         $avatar = Auth::user()->avatar;
         $groups = $avatar->groups;
         return view('group.group_list')
             ->with(["avatar" => $avatar, "groups" => $groups]);
     }
+    
+
     public function group_members($id)
+    // グループに所属するメンバーの一覧
     {
         $group = Group::find($id);
         $members = $group->members;
         return view('group.members')
             ->with(["group" => $group, "members" => $members]);
     }
+    
     public function add_member($id)
+    // クルーをメンバーに招待する画面
     {
         $follows_id = Auth::user()->follow->pluck('user_id')->all();
         $members_id = Group::find($id)->allmembers->pluck('user_id')->all();
@@ -38,7 +44,9 @@ class GroupController extends Controller
         return view('group.add_member')
             ->with(["group" => $group, "listed_crews" => $listed_crews]);
     }
+    
     public function add_member_confirm()
+    // 招待を送る
     {   $id = request('group_id');
         $user_id = request('user_id');
         $group = Group::find($id);

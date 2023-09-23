@@ -103,7 +103,7 @@ class GroupController extends Controller
     {
         $group = Group::find(request("group_id"));
         $group->decks()->attach(request('deck_id'));
-        return redirect()->route('group_decks',$group->id);
+        return redirect()->route('group.decks',$group->id);
     }
     public function newgroup()
     {

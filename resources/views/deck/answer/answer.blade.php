@@ -12,7 +12,7 @@
         <p id = "quiz_count" class = hidden>{{ $quiz_count }}</p>
         <p id = "deck_id" class = hidden>{{ $deck_id }}</p>
         <section id = "front">
-            @foreach($quizzes as $quiz)
+            @foreach($shuffled_quizzes as $quiz)
             <h1 class = "question_{{ $loop->iteration }} hidden_question">{{ $loop->iteration }}/{{ $quiz_count }} 問目</h1>
             <h1 class = "question_{{ $loop->iteration }} hidden_question">Q.{{$quiz->question}}</h1>
             @endforeach
@@ -22,7 +22,7 @@
         </section>
         <div id = "mask" class = "backHidden"></div>
         <section id = "modal" class = "backHidden">
-            @foreach($quizzes as $quiz)    
+            @foreach($shuffled_quizzes as $quiz)    
                 <h2 class = "question_{{ $loop->iteration }} hidden_question"> Q.{{$quiz->question}}</h2>
                 <h1 class = "question_{{ $loop->iteration }} hidden_question"> A.{{$quiz->answer}}</h1>
             <div>

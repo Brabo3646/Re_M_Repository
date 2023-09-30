@@ -12,10 +12,6 @@ class Quiz extends Model
         'question_number',
         'question',
         'answer',
-        'latest_correct',
-        'correct_count',
-        'latest_Error',
-        'error_count',
         'hidden',
     ];
     

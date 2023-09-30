@@ -97,7 +97,7 @@ class DeckController extends Controller
         $quiz_count = count($shuffled_quizzes);
         $user_id = Auth::id();
         return view('deck.answer.answer')
-            ->with(["quizzes" => $shuffled_quizzes, "quiz_count" => $quiz_count, "user_id" => $user_id, "deck_id" => $id]);
+            ->with(["shuffled_quizzes" => $shuffled_quizzes, "quiz_count" => $quiz_count, "user_id" => $user_id, "deck_id" => $id]);
     }
     public function result($id)
     {

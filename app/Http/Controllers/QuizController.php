@@ -80,13 +80,15 @@ class QuizController extends Controller
         if(!$exists){
             $user->quiz($quiz_id)->attach($quiz_id);
         }
-        $quiz = $user->quiz($quiz_id);
+        $quiz = $user->quizzes()->where('id', $quiz_id)->first();
         if ($CE === "correct"){
-            $quiz->increment('correct_count');
-            $quiz->update(['latest_correct' => Carbon::now()]);
+            $quiz->pivot->increment('correct_count');
+            $quiz->pivot->latest_correct = Carbon::now();
+            $quiz->pivot->save();
         } else {
-            $quiz->increment('error_count');
-            $quiz->update(['latest_error' => Carbon::now()]);
+            $quiz->pivot->increment('error_count');
+            $quiz->pivot->latest_error = Carbon::now();
+            $quiz->pivot->save();
         }
         return response()->json(['code' => $CE]);
     }

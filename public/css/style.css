@@ -29,3 +29,9 @@ body {
 .crew_name{
   font-size: 32px;
 }
+#correct{
+  background-color: lime;
+}
+#error{
+  background-color: red;
+}

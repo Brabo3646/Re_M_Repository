@@ -54,6 +54,8 @@ Route::middleware(['auth', 'verified'])->group(function() {
     Route::post('/deck/answer/{id}',[DeckController::class, 'answer'])
         ->name('deck.answer')
         ->where('id', '[0-9]+');
+    Route::get('/deck/result/{id}',[DeckController::class, 'result'])
+        ->where('id', '[0-9]+');
     Route::get('/deck/share/list',[DeckController::class, 'share_list'])
         ->name('deck.share.list');
     Route::post('deck/share/confirm',[DeckController::class, 'share_confirm'])

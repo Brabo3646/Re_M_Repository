@@ -76,16 +76,17 @@ class QuizController extends Controller
         $user_id = request('user_id');
         $user = User::find($user_id);
         $exists = $user->quiz($quiz_id)->exists();
+        // ユーザーとクイズの中間データがない場合
         if(!$exists){
             $user->quiz($quiz_id)->attach($quiz_id);
         }
-            if ($CE === "correct"){
-                $user->quiz($quiz_id)->increment('correct_count', 1);
-                $user->quiz($quiz_id)->update(['latest_correct' => Carbon::now()]);
-            } else {
-                $user->quiz($quiz_id)->increment('error_count', 1);
-                $user->quiz($quiz_id)->update(['latest_error' => Carbon::now()]);
-            }
+        if ($CE === "correct"){
+            $user->quiz($quiz_id)->increment('correct_count', 1);
+            $user->quiz($quiz_id)->update(['latest_correct' => Carbon::now()]);
+        } else {
+            $user->quiz($quiz_id)->increment('error_count', 1);
+            $user->quiz($quiz_id)->update(['latest_error' => Carbon::now()]);
+        }
         return response()->json(['code' => $CE]);
     }
 }

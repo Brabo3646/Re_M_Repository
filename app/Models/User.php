@@ -49,6 +49,13 @@ class User extends Authenticatable
     {
     return $this->belongsToMany(Avatar::class);
     }
+    public function deck_exist($id)
+    {
+    $deck_exist = $this->belongsToMany(Deck::class)
+                 ->where('id', '=', $id)
+                 ->exists();
+    return $deck_exist;
+    }
     public function decks()
     {
     return $this->belongsToMany(Deck::class)
@@ -63,6 +70,11 @@ class User extends Authenticatable
     {
     return $this->belongsToMany(Quiz::class)
                 ->where('id', '=', $id)
+                ->withPivot('correct_count','error_count','latest_correct','latest_error');
+    }
+    public function quizzes()
+    {
+    return $this->belongsToMany(Quiz::class)
                 ->withPivot('correct_count','error_count','latest_correct','latest_error');
     }
 }

@@ -97,8 +97,19 @@ class DeckController extends Controller
         $quiz_count = count($shuffled_quizzes);
         $user_id = Auth::id();
         return view('deck.answer.answer')
-            ->with(["quizzes" => $shuffled_quizzes, "quiz_count" => $quiz_count, "user_id" => $user_id]);
-        
+            ->with(["quizzes" => $shuffled_quizzes, "quiz_count" => $quiz_count, "user_id" => $user_id, "deck_id" => $id]);
+    }
+    public function result($id)
+    {
+        $user = Auth::user();
+        if(!$user->deck_exist($id)){
+            return view('error.error_deck');
+        }
+        $deck = Deck::find($id);
+        $quiz_id = $deck->quizzes->pluck('id')->toArray();
+        $answered_quizzes = $user->quizzes()->whereIn('id', $quiz_id)->get();
+        return view('deck.answer.result')
+            ->with(["deck" => $deck, "quizzes" => $answered_quizzes]);
     }
     
     // 共有可能なデッキの一覧画面

@@ -4,7 +4,11 @@
     $.ajaxSetup({
         headers: { 'X-CSRF-TOKEN': $("[name='csrf-token']").attr("content") },
     });
+    // htmlファイル内のデータとして、クイズ数とデッキのIDを取得
     const quiz_count = parseInt($('#quiz_count').text(), 10);
+    const deck_id = parseInt($('#deck_id').text(), 10);
+    let redirectURL = '/deck/result/' + deck_id;
+    
     let correct_count = 0;
     let quiz_id = 0;
     console.log(quiz_count);
@@ -44,8 +48,7 @@
         question_number ++;
         if (question_number > quiz_count){
             $.when(request).done(function(){
-                $('#front').append('<p>お疲れ様！' + quiz_count + '問中、' + correct_count + '問正解！</p>')
-                $('#check_answer_button').addClass('hidden');
+                window.location.href = redirectURL;
             }).fail(function(){
                 $('#front').append('<p>予期しないエラーが発生しました！お手数ですが、製作者にご連絡ください。<p>')
             });

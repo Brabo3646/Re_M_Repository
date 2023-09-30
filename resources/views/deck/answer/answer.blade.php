@@ -10,6 +10,7 @@
     </x-slot>
     <x-slot name="slot">
         <p id = "quiz_count" class = hidden>{{ $quiz_count }}</p>
+        <p id = "deck_id" class = hidden>{{ $deck_id }}</p>
         <section id = "front">
             @foreach($quizzes as $quiz)
             <h1 class = "question_{{ $loop->iteration }} hidden_question">{{ $loop->iteration }}/{{ $quiz_count }} 問目</h1>

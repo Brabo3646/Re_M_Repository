@@ -47,7 +47,6 @@ class QuizController extends Controller
         $quiz->question = request('question');
         $quiz->answer = request('answer');
         $quiz->save();
-        print_r($quiz);
         $id = $quiz->deck_id;
         return redirect()->route('deck.check', $id);
     }

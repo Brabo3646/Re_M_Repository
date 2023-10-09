@@ -49,6 +49,26 @@ class AvatarController extends Controller
         }
         
     }
+    public function edit()
+    {
+        $user_id = Auth::user()->id;
+        $avatar = Avatar::find($user_id);
+        return view('avatar.avatar_edit')
+            ->with(["avatar" => $avatar]);
+    }
+    public function update(avatarRequest $request)
+    {
+        $user_id = Auth::user()->id;
+        $avatar = Avatar::find($user_id);
+        $avatar->avatar_name = $request->avatar_name;
+        $avatar->avatar_ID = $request->avatar_ID;
+        $avatar->introduce = $request->introduce;
+        if ($request->searchable === "able"){
+            $avatar->searchable = true;
+        } else {$avatar->searchable = false;}
+        $avatar->save();
+        return redirect()->route('profile.edit');
+    }
     public function crew_add($route)
     // 所謂フレンド登録
     {   

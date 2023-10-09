@@ -6,6 +6,10 @@ body {
     Meiryo,
     sans-serif;
 }
+/*a {*/
+/*  padding:32px;*/
+/*  margin: 32px;*/
+/*}*/
 .deck_tablehead_name{
   width:160px;
 }

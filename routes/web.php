@@ -26,12 +26,17 @@ Route::middleware(['auth', 'verified'])->group(function() {
         ->name('avatar.newavatar');
     Route::post('/avatar/create/{route}',[AvatarController::class, 'create'])
         ->name('avatar.create');
+    Route::get('/avatar/edit',[AvatarController::class, 'edit'])
+        ->name('avatar.edit');
+    Route::post('/avatar/update',[AvatarController::class, 'update'])
+        ->name('avatar.update');
     Route::get('/crew/add/{route}',[AvatarController::class, 'crew_add'])
         ->name('crew.add');
     Route::post('/crew/register/{route}',[AvatarController::class, 'crew_register'])
         ->name('crew.register');
     Route::get('/group/avatar',[AvatarController::class, 'group_avatar_exist'])
         ->name('group.avatar.exist');
+    
 });
     
 

@@ -1,12 +1,12 @@
 <section>
     <header>
-        <h2 class="text-lg font-medium text-gray-900">
+        <h2>
             {{ __('プロフィール情報') }}
         </h2>
-
         <p class="mt-1 text-sm text-gray-600">
-            {{ __("ここではプロファイルを更新できます。") }}
+            {{ __("ここではプロフィールを更新できます。") }}
         </p>
+        <a class = "m-2"href = "/avatar/edit">アバターの設定はこちら</a>
     </header>
 
     <form id="send-verification" method="post" action="{{ route('verification.send') }}">

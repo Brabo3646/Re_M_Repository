@@ -15,6 +15,8 @@
             <th>問い</th>
             <th>解答</th>
             <th>正解/誤答</th>
+            <th>正解回数</th>
+            <th>誤答回数</th>
         </tr>
         @foreach($quizzes as $quiz)
             <tr>
@@ -36,6 +38,12 @@
                         誤答
                     </th>
                     @endif
+                </th>
+                <th>
+                    {{ $quiz->pivot->correct_count }}
+                </th>
+                <th>
+                    {{ $quiz->pivot->error_count }}
                 </th>
             </tr>
         @endforeach
